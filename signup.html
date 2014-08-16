@@ -1,0 +1,35 @@
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-3">
+            Team name
+        </label>
+        <div class="col-md-5">
+            <input type="text" class="form-control" autofocus="autofocus" ng-model="team.teamName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3">
+            Team members
+        </label>
+        <div class="col-md-3">
+            <ul ng-repeat="member in team.teamMembers">
+                <li>
+                    {{ member }}
+                    <a ng-show="member != user.displayName" class="remove" ng-click="team.teamMembers.splice($index,1)">
+                        x
+                    </a>
+                </li>
+            </ul>
+            <div>
+                <input type="text" ng-model="newMember" class="form-control" value="{{ member }}" ng-keyup="addMember($event)" ng-blur="addMember()" ng-class="member == '' ? 'optional' : ''" placeholder="Add a member">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-5 col-md-offset-3">
+            <a class="btn btn-default" ng-click="signup()">
+                Sign up team
+            </a>
+        </div>
+    </div>
+</form>
